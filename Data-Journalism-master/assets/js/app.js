@@ -1,4 +1,4 @@
-// Data Journalism - D3
+// Data Visualisation - D3
 
 // Code for Chart is Wrapped Inside a Function That Automatically Resizes the Chart
 function makeResponsive() {
@@ -12,8 +12,6 @@ function makeResponsive() {
   }
   
   // Setup Chart Parameters/Dimensions
-  // var svgWidth = 980;
-  // var svgHeight = 600;
   var svgWidth = window.innerWidth;
   var svgHeight = window.innerHeight;
 
@@ -111,27 +109,51 @@ function makeResponsive() {
 
     if (chosenXAxis === "Auto_Current_Competitiveness") {
       var xLabel = "Auto_Current_Competitiveness";
+      var chosenVarName = "Auto_Variable_Name";
+      var chosenCategory = "Auto_Category";
+      var chosenCluster = "Auto_Cluster"
     }
     else if (chosenXAxis === "Consumer_Current_Competitiveness") {
       var xLabel = "Consumer_Current_Competitiveness";
+      var chosenVarName = "Consumer_Variable_Name";
+      var chosenCategory = "Consumer_Category";
+      var chosenCluster = "Consumer_Cluster"
     }
     else if (chosenXAxis === "Industry_Current_Competitiveness") {
       var xLabel = "Industry_Current_Competitiveness";
+      var chosenVarName = "Industry_Variable_Name";
+      var chosenCategory = "Industry_Category";
+      var chosenCluster = "Industry_Cluster";
     }
     else {
       var xLabel = "Hitech_Current_Competitiveness";
+      var chosenVarName = "Hitech_Variable_Name";
+      var chosenCategory = "Hitech_Category";
+      var chosenCluster = "Hitech_Cluster";
     }
     if (chosenYAxis === "Auto_Future_Competitiveness") {
       var yLabel = "Auto_Future_Competitiveness";
+      var chosenVarName = "Auto_Variable_Name";
+      var chosenCategory = "Auto_Category";
+      var chosenCluster = "Auto_Cluster";
     }
     else if (chosenYAxis === "Consumer_Future_Competitiveness") {
       var yLabel = "Consumer_Future_Competitiveness";
+      var chosenVarName = "Consumer_Variable_Name";
+      var chosenCategory = "Consumer_Category";
+      var chosenCluster = "Consumer_Cluster";
     }
     else if (chosenYAxis === "Industry_Future_Competitiveness") {
       var yLabel = "Industry_Future_Competitiveness";
+      var chosenVarName = "Industry_Variable_Name";
+      var chosenCategory = "Industry_Category";
+      var chosenCluster = "Industry_Cluster";
     }
     else {
       var yLabel = "Hitech_Future_Competitiveness";
+      var chosenVarName = "Hitech_Variable_Name";
+      var chosenCategory = "Hitech_Category";
+      var chosenCluster = "Hitech_Cluster";
     }
 
     // Initialize Tool Tip
@@ -139,7 +161,7 @@ function makeResponsive() {
       .attr("class", "tooltip d3-tip")
       .offset([90, 90])
       .html(function(d) {
-        return (`<strong>${d[chosenXAxis]},${d[chosenYAxis]}</strong><br>${xLabel} ${d[chosenXAxis]}<br>${yLabel} ${d[chosenYAxis]}`);
+        return (`<strong>${d[chosenVarName]},${d[chosenCategory]},${d[chosenCluster]}</strong><br>${xLabel} ${d[chosenXAxis]}<br>${yLabel} ${d[chosenYAxis]}`);
       });
     // Create Circles Tooltip in the Chart
     circlesGroup.call(toolTip);
@@ -178,6 +200,7 @@ function makeResponsive() {
       data.Consumer_Future_Competitiveness = +data.Consumer_Future_Competitiveness;
       data.Industry_Future_Competitiveness = +data.Industry_Future_Competitiveness;
       data.Hitech_Future_Competitiveness = +data.Hitech_Future_Competitiveness;
+      data
     });
 
     // Create xLinearScale & yLinearScale Functions for the Chart
@@ -223,7 +246,7 @@ function makeResponsive() {
       .attr("text-anchor", "middle")
       .attr("fill", "white");
 
-    // Create Group for 3 xAxis Labels
+    // Create Group for 4 xAxis Labels
     var xLabelsGroup = chartGroup.append("g")
       .attr("transform", `translate(${width / 2}, ${height + 20})`);
     // Append xAxis
@@ -256,7 +279,7 @@ function makeResponsive() {
       .text("Hitech_Current_Competitiveness");
   
 
-    // Create Group for 3 yAxis Labels
+    // Create Group for 4 yAxis Labels
     var yLabelsGroup = chartGroup.append("g")
       .attr("transform", `translate(-25, ${height / 2})`);
     // Append yAxis
